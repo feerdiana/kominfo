@@ -1,12 +1,11 @@
 <?php
-ob_start();
  defined('BASEPATH') OR exit('No direct script access allowed');
  
  class Login extends CI_Controller {
 
  	public function index()
  	{
- 		$this->load->view('Login_view');
+ 		$this->load->view('login_view');
  	}
  
  	public function cekLogin()
@@ -15,9 +14,9 @@ ob_start();
  		$this->form_validation->set_rules('username','Username','trim|required');
  		$this->form_validation->set_rules('password','Password','trim|required|callback_cekDb');
  		if ($this->form_validation->run() == FALSE) {
- 			$this->load->view('Login_view');
+ 			$this->load->view('login_view');
  		} else {
- 			redirect('Pegawai','refresh');
+ 			redirect('Home','refresh');
  		}
  		
  	}
@@ -39,9 +38,9 @@ ob_start();
  	
  	public function cekDb($password)
  	{
- 		$this->load->model('User');
+ 		$this->load->model('user');
  		$username = $this->input->post('username');
- 		$result = $this->User->login($username,$password);
+ 		$result = $this->user->login($username,$password);
  		if($result){
  			$sess_array = array();
  			foreach ($result as $row) {

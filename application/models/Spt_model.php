@@ -8,42 +8,45 @@
 			$query = $this->db->get("spt");
 			return $query->result_array();
 		}
+
 		public function insertSpt()
 		{
-			$tgl=$this->input->post('Waktu_Pelaksanaan');
+			$tgl=$this->input->post('tanggal');
 			$tglBaru=date_format(new DateTime($tgl),"Y-m-d");
 			$object = array(
-				'No_Surat' => $this->input->post('No_Surat'),
-				'Perihal' => $this->input->post('Perihal'),
-				'Petugas' => $this->input->post('Petugas'),
-				'Waktu_Pelaksanaan' => $tglBaru,
-				'Hasil' => $this->input->post('Hasil'));
+				'no_surat' => $this->input->post('no_surat'),
+				'perihal' => $this->input->post('perihal'),
+				'tanggal' => $tglBaru,
+				'petugas' => $this->input->post('petugas'),
+				'tujuan' => $this->input->post('tujuan'),
+				'hasil' => $this->input->post('hasil'));
 			$this->db->insert('spt', $object);
 		}
 
-		public function getSpt($No_Surat)
+		public function getSpt($id)
 		{
-			$this->db->where('No_Surat', $No_Surat);
+			$this->db->where('id', $id);
 			$query = $this->db->get('spt');
 			return $query->result();
 		}
 
-		public function updateByNo_Surat($No_Surat)
+		public function updateById($id)
 		{
 			$data = array(
-				//'No_Surat' => $this->input->post('No_Surat'),
-				'Perihal' => $this->input->post('Perihal'),
-				'Petugas' => $this->input->post('Petugas'),
-				'Waktu_Pelaksanaan' => $this->input->post('Waktu_Pelaksanaan'),
-				'Hasil' => $this->input->post('Hasil')
+				'no_surat' => $this->input->post('no_surat'),
+				'perihal' => $this->input->post('perihal'),
+				'tanggal' => $this->input->post('tanggal'),
+				'petugas' => $this->input->post('petugas'),
+				'tujuan' => $this->input->post('tujuan'),
+				'hasil' => $this->input->post('hasil')
 			);
-			$this->db->where('No_Surat', $No_Surat);
+			$this->db->where('id', $id);
 			$this->db->update('spt', $data);
 		}
 
-		public function delete($No_Surat)
+		public function delete($id)
 		{ 
-        	if ($this->db->delete("spt", "No_Surat = ".$No_Surat)) { 
+        	if ($this->db->delete("spt", "id = ".$id)) { 
             return true; 
         }
       } 

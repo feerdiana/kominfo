@@ -60,21 +60,22 @@ $acl = array(
 	'login/index' => array(
 		'public'
 	),
-	'pegawai' => array(
+	'spt' => array(
 		'user' => true,
 		'admin' => true,
 	),
-	'jabatan' => array(
+	'Petugas' => array(
+		'user' => true,
+		'admin' => true,
+	),
+	'Sppd' => array(
 		'user' => false,
 		'admin' => true,
 	),
-	'anak' => array(
-		'user' => true,
+	'kwitansi' => array(
+		'user' => false,
 		'admin' => true,
 	),
-
-
-
 );
 
 /* -----------------------------

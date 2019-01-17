@@ -1,62 +1,37 @@
-<!DOCTYPE html>
-<html lang="">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Feerdiana</title>
+<?php 
+        $this->load->view('header');
+     ?>
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-  </head>
-  <body>
-
-
-    <div class="row">
-      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-        <nav class="navbar navbar-default" role="navigation">
-          <div class="container-fluid">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-                   
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-              </button>
-              <a class="navbar-brand" href="#">Authentikasi Multilevel</a>
-              
-            </div>
-        
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse navbar-ex1-collapse">
-             <ul class="nav navbar-nav "> 
-                 <li class="active"> <a href="<?= base_url('index.php'); ?>">Daftar Pegawai</a></li>
-                <li><a class="nav-link" href="<?php echo site_url()?>/pegawai">Pegawai<span class="sr-only">(current)</span></a></li>
-                <li><a class="nav-link" href="<?php echo site_url()?>/jabatan">Jabatan<span class="sr-only">(current)</span></a></li>
-                <li><a class="nav-link" href="<?php echo site_url()?>/anak">Anak<span class="sr-only">(current)</span></a></li>
-              </ul>
-              <ul class="nav navbar-nav navbar-right ">
-                 <li ><a href="<?php echo base_url('index.php/Login/logout') ?>"><i class="glyphicon glyphicon-user"></i>Logout</a></li>
-              </ul>
-            </div><!-- /.navbar-collapse -->
-              
-        </nav>
+<nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
+      <a class="navbar-brand" href="#">KOMINFO</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active"><a class="nav-link" href="<?php echo site_url()?>/Home">HOME<span class="sr-only">(current)</span></a></li>
+          <li>
+            <a class="nav-link" href="<?php echo base_url() ?>index.php/spt">SPT</a> 
+          </li>
+          <li >
+            <a class="nav-link" href="<?php echo site_url() ?>/Sppd">SPPD</a></li>
+           <LI> <a class="nav-link" href="<?php echo site_url() ?>/Home/gridDinamis">JS GRID</a></LI>
+          </li>
+          <li >
+            <a class="nav-link" href="<?php echo site_url() ?>/kwitansi">KWITANSI</a></li>
+        </ul>
+        <form class="form-inline mt-2 mt-md-0">
+          <a href="<?php echo base_url('index.php/Login/logout') ?>" class="btn btn-secondary my-2 my-sm-0 ml-2">Logout</a>
+        </form>
+      </div>
+    </nav>
 
     <main role="main" class="container">
       <div class="jumbotron">
-        <h1>Pegawai</h1>
+        <h1>Selamat Datang</h1>
         <p class="lead">
           <?php 
-echo 'Selamat Datang, '.$this->session->userdata('logged_in')['username']; ?>
+echo 'Anda Telah Masuk Sebagai, '.$this->session->userdata('logged_in')['username']; ?>
         </p>
       </div>
     </main>
