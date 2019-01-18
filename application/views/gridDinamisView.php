@@ -37,14 +37,12 @@
         </form>
       </div>
     </nav>
-    <div class="print">
-    <button class="btn btn-warning" onclick="acprint()"> Print</button>
+     <div class="print">
+      <button class="btn btn-warning" onclick="window.open(' <?php echo base_url() ?>index.php/Sppd/print').print()"> Print</button>
+       <a href="<?php echo base_url("index.php/Sppd/generate_to_pdf") ?>"><button type="button" class="btn btn-danger">Save As PDF</button></a>
+      <a href="<?php echo base_url("index.php/Sppd/generate_to_excel") ?>"><button type="button" class="btn btn-success">Save As Excel</button></a>
     <div class="jsGrid"></div>
      </div>
-  <script type="text/javascript">
-    function acprint(){
-      window.print();
-    }
   </script>
 </body>
 </html>

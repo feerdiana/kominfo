@@ -26,8 +26,10 @@
       </div>
     </nav>
     <div class="print">
-      <button class="btn btn-warning" onclick="acprint()"> Print</button>
+      <button class="btn btn-warning" onclick="window.open(' <?php echo base_url() ?>index.php/Sppd/print').print()"> Print</button>
       <a href="<?php echo base_url('index.php/Sppd/create') ?>" class="btn btn-primary my-3">Tambah</a>
+       <a href="<?php echo base_url("index.php/Sppd/generate_to_pdf") ?>"><button type="button" class="btn btn-danger">Save As PDF</button></a>
+      <a href="<?php echo base_url("index.php/Sppd/generate_to_excel") ?>"><button type="button" class="btn btn-success">Save As Excel</button></a>
       <table class="table table-hover">
         <thead>
           <th>Nama Pegawai</th>
@@ -61,13 +63,7 @@
                 <a href="<?php echo base_url("index.php/Sppd/deleteData/".$value['id']) ?>" class="btn btn-sm btn-danger">Hapus</a>
               </td>
             </tr>
-            
           <?php endforeach ?>
         </tbody>
       </table>
        </div>
-  <script type="text/javascript">
-    function acprint(){
-      window.print();
-    }
-  </script>

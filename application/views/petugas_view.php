@@ -32,8 +32,10 @@
   <!-- <div class="jumbotron"> -->
   <h1 class="display">Perihal : <?php echo $spt[0]->perihal ?></h1>
   <p class="lead">No Surat : <?php echo $spt[0]->no_surat ?></p>
-  <button class="btn btn-warning" onclick="acprint()"> Print</button>
+  <button class="btn btn-warning" onclick="window.open(' <?php echo base_url() ?>index.php/Petugas/print').print()"> Print</button>
   <a href="<?php echo base_url("index.php/Petugas/create/".$idPegawai) ?>" class="btn btn-primary">Tambah data</a>
+  <a href="<?php echo base_url("index.php/Petugas/generate_to_pdf") ?>"><button type="button" class="btn btn-danger">Save As PDF</button></a>
+      <a href="<?php echo base_url("index.php/Petugas/generate_to_excel") ?>"><button type="button" class="btn btn-success">Save As Excel</button></a>
   </div>
 
 
@@ -63,10 +65,6 @@
 </table>
 </div>
  </div>
-  <script type="text/javascript">
-    function acprint(){
-      window.print();
-    }
   </script>
 </main>  
     <?php 

@@ -19,56 +19,56 @@ table {border-collapse: collapse;}
 	  text-align: left;
 	}
 </style>
-<div class="header">
+<div >
     <table style="width:100%; border-collapse: collapse;" border="0">
         <tr>
-            <td style="width:20%;text-align: center;"><img src="<?=base_url()?>uploads/logo.png" width="80px" height="100px" alt=""></td>
+            <td style="width:20%; text-align: center;"><img src="<?=base_url()?>uploads/logo.png" width="80px" height="100px" alt=""></td>
             <td style="width:70%;text-align: center;"><h4>DINAS KOMUNIKASI DAN INFORMATIKA</h4></td>
         </tr>
     </table>
 </div>
-<br> </br>
-<br> </br>
 <br> </br>
 <div class="footer"><span class="pagenum"></span></div>
 <div class="body">
   <table style="width: 100%; ">
 	<thead>
 		<tbody>
-		<?php $spt_list = $this->db->from('spt')->get();
-	$no =1; foreach ($spt_list->result() as $key){ ?>
+		<?php $kwitansi_list = $this->db->from('kwitansi')->get();
+	$no =1; foreach ($kwitansi_list->result() as $key){ ?>
 	<tr>
-	 <td style="width: 13%; "><b>No Surat</b></td>
+	 <td style="width: 13%; "><b>No BKU</b></td>
 	 <td style="vertical-align: top;"> : </td>
-	 <td style="width: 80%;"><?php echo $key->no_surat ?></td>
+	 <td style="width: 80%;"><?php echo $key->no_bku ?></td>
 	</tr>
 	<tr>
-	 <td style="vertical-align: top;"><b>Perihal</b></td>
+	 <td style="vertical-align: top;"><b>Kode Rekening</b></td>
 	 <td style="vertical-align: top;"> : </td>
-	 <td style="vertical-align: top;"><?php echo $key->perihal ?></td>
+	 <td style="vertical-align: top;"><?php echo $key->kode_rek ?></td>
 	</tr>
 	<tr>
-	 <td style="vertical-align: top;"><b>Tanggal</b></td>
+	 <td style="vertical-align: top;"><b>No</b></td>
 	 <td style="vertical-align: top;"> : </td>
-	 <td style="vertical-align: top;"><?php echo date_format(date_create($key->tanggal),"d F Y") ?></td>
+	 <td style="vertical-align: top;"><?php echo $key->no ?></td>
 	</tr>
 	<tr>
-	 <td style="vertical-align: top;"><b>Petugas</b></td>
+	 <td style="vertical-align: top;"><b>Telah Terima Dari</b></td>
 	 <td style="vertical-align: top;"> : </td>
-	 <td style="vertical-align: top;"><?php $petugas= $this->db->get('petugas')->result(); 
-	 foreach($petugas as $row){
-	 	echo '- '.$row->nama_petugas .'<br>';
-	 }?></td>
+	 <td style="vertical-align: top;"><?php echo $key->dari ?></td>
 	</tr>
 	<tr>
-	 <td style="vertical-align: top;"><b>Tujuan</b></td>
+	 <td style="vertical-align: top;"><b>Uang Sejumlah</b></td>
 	 <td style="vertical-align: top;"> : </td>
-	 <td style="vertical-align: top;"><?php echo $key->tujuan ?></td>
+	 <td style="vertical-align: top;"><?php echo $key->sejumlah ?></td>
 	</tr>
 	<tr>
-	 <td style="vertical-align: top;"><b>Hasil</b></td>
+	 <td style="vertical-align: top;"><b>Untuk Pembayaran</b></td>
 	 <td style="vertical-align: top;"> : </td>
-	 <td style="vertical-align: top;"><?php echo $key->hasil ?></td>
+	 <td style="vertical-align: top;"><?php echo $key->untuk ?></td>
+	</tr>
+	<tr>
+	 <td style="vertical-align: top;"><b>Rp</b></td>
+	 <td style="vertical-align: top;"> : </td>
+	 <td style="vertical-align: top;"><?php echo $key->rp ?></td>
 	</tr>
 	</thead>
 	
@@ -77,6 +77,6 @@ table {border-collapse: collapse;}
 	<?php $no++; } ?>
 	</tbody></table>
 </div>
-  <?php if($no<$spt_list->num_rows()){ ?>
+  <?php if($no<$kwitansi_list->num_rows()){ ?>
     <div style="counter-increment: page -<?=$no?>" class="page"></div>
   <?php }?>

@@ -26,9 +26,11 @@
         </form>
       </div>
     </nav>
-    <div class="print">
-      <button class="btn btn-warning" onclick="acprint()"> Print</button>
+   <div class="print">
+    <button class="btn btn-warning" onclick="window.open(' <?php echo base_url() ?>index.php/kwitansi/print').print()"> Print</button>
       <a href="<?php echo base_url('index.php/kwitansi/create') ?>" class="btn btn-primary my-3">Tambah</a>
+       <a href="<?php echo base_url("index.php/kwitansi/generate_to_pdf") ?>"><button type="button" class="btn btn-danger">Save As PDF</button></a>
+      <a href="<?php echo base_url("index.php/kwitansi/generate_to_excel") ?>"><button type="button" class="btn btn-success">Save As Excel</button></a>
       <table class="table table-hover">
         <thead>
           <th>No BKU</th>
@@ -56,14 +58,9 @@
                 <a href="<?php echo base_url("index.php/kwitansi/deleteData/".$value['id']) ?>" class="btn btn-sm btn-danger">Hapus</a>
               </td>
             </tr>
-            
           <?php endforeach ?>
         </tbody>
       </table>
        </div>
-  <script type="text/javascript">
-    function acprint(){
-      window.print();
-    }
   </script>
     </main>

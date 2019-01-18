@@ -97,59 +97,64 @@ class Spt extends CI_Controller {
 		$resultData = $this->db->get("spt")->result();
 		$no = 1; // Untuk penomoran tabel, di awal set dengan 1
 		$numrow = 4; // Set baris pertama untuk isi tabel adalah baris ke 4
+		$petugas= $this->db->get('petugas');
 		foreach($resultData as $row){ // 
 			//$excel->setActiveSheetIndex(0)->setCellValue('A3', "No");
-			$excel->setActiveSheetIndex(0)->setCellValue('A'.$numrow, "No Surat");
-			$excel->setActiveSheetIndex(0)->setCellValue('A'.$numrow+1, "Perihal");
-			$excel->setActiveSheetIndex(0)->setCellValue('A'.$numrow+2, "Tanggal");
-			$excel->setActiveSheetIndex(0)->setCellValue('A'.$numrow+3, "Petugas");
-			$excel->setActiveSheetIndex(0)->setCellValue('A'.$numrow+4, "Tujuan");
-			$excel->setActiveSheetIndex(0)->setCellValue('A'.$numrow+5, "Hasil");
+			$excel->setActiveSheetIndex(0)->setCellValue('A'.($numrow), "No Surat");
+			$excel->setActiveSheetIndex(0)->setCellValue('A'.($numrow+1), "Perihal");
+			$excel->setActiveSheetIndex(0)->setCellValue('A'.($numrow+2), "Tanggal");
+			$jml_petugas = $petugas->num_rows();
+			$excel->setActiveSheetIndex(0)->setCellValue('A'.($numrow+$jml_petugas), "Petugas");
+			$excel->setActiveSheetIndex(0)->setCellValue('A'.($numrow+3+$jml_petugas), "Tujuan");
+			$excel->setActiveSheetIndex(0)->setCellValue('A'.($numrow+4+$jml_petugas), "Hasil");
 			// Apply style header yang telah kita buat tadi ke masing-masing kolom header
 			//$excel->getActiveSheet()->getStyle('A3')->applyFromArray($style_col);
-			$excel->getActiveSheet()->getStyle('A'.$numrow)->applyFromArray($style_col);
-			$excel->getActiveSheet()->getStyle('A'.$numrow+5)->applyFromArray($style_col);
-			$excel->getActiveSheet()->getStyle('A'.$numrow+5)->applyFromArray($style_col);
-			$excel->getActiveSheet()->getStyle('A'.$numrow+5)->applyFromArray($style_col);
-			$excel->getActiveSheet()->getStyle('A'.$numrow+5)->applyFromArray($style_col);
-			$excel->getActiveSheet()->getStyle('A'.$numrow+5)->applyFromArray($style_col);	
+			$excel->getActiveSheet()->getStyle('A'.($numrow))->applyFromArray($style_row);
+			$excel->getActiveSheet()->getStyle('A'.($numrow+1))->applyFromArray($style_row);
+			$excel->getActiveSheet()->getStyle('A'.($numrow+2))->applyFromArray($style_row);
+			$excel->getActiveSheet()->getStyle('A'.($numrow+3))->applyFromArray($style_row);
+			$excel->getActiveSheet()->getStyle('A'.($numrow+4))->applyFromArray($style_row);
+			$excel->getActiveSheet()->getStyle('A'.($numrow+5))->applyFromArray($style_row);
+			$excel->getActiveSheet()->getStyle('A'.($numrow+6))->applyFromArray($style_row);
+			$excel->getActiveSheet()->getStyle('A'.($numrow+7))->applyFromArray($style_row);			
 
-			//$excel->setActiveSheetIndex(0)->setCellValue('A'.$numrow, $no);
-			$excel->setActiveSheetIndex(0)->setCellValue('B'.$numrow, $row->no_surat);
-			$excel->setActiveSheetIndex(0)->setCellValue('B'.$numrow+1, $row->perihal);
-			$excel->setActiveSheetIndex(0)->setCellValue('B'.$numrow+2, $row->tanggal);
-			$excel->setActiveSheetIndex(0)->setCellValue('B'.$numrow+3, $row->petugas);
-			$excel->setActiveSheetIndex(0)->setCellValue('B'.$numrow+4, $row->tujuan);
-			$excel->setActiveSheetIndex(0)->setCellValue('B'.$numrow+5, $row->hasil);
+			//$excel->setActiveSheetIndex(0)->setCellValue('A'.($numrow, $no);
+			$excel->setActiveSheetIndex(0)->setCellValue('B'.($numrow), $row->no_surat);
+			$excel->setActiveSheetIndex(0)->setCellValue('B'.($numrow+1), $row->perihal);
+			$excel->setActiveSheetIndex(0)->setCellValue('B'.($numrow+2), $row->tanggal);
+			$n = $numrow+3; foreach ($petugas->result() as $pt){
+				$excel->setActiveSheetIndex(0)->setCellValue('B'.($n), $pt->nama_petugas);
+				$n++;
+				$numrow = $n;
+			}
+			$excel->setActiveSheetIndex(0)->setCellValue('B'.($numrow), $row->tujuan);
+			$excel->setActiveSheetIndex(0)->setCellValue('B'.($numrow+1), $row->hasil);
+
 
 			// Apply style row yang telah kita buat tadi ke masing-masing baris (isi tabel)
-			//$excel->getActiveSheet()->getStyle('A'.$numrow)->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER); // Set text center untuk kolom A2
-			//$excel->getActiveSheet()->getStyle('A'.$numrow)->applyFromArray($style_row);
-			$excel->getActiveSheet()->getStyle('B4'.$numrow)->applyFromArray($style_row);
-			$excel->getActiveSheet()->getStyle('B5'.$numrow)->applyFromArray($style_row);
-			$excel->getActiveSheet()->getStyle('B6'.$numrow)->applyFromArray($style_row);
-			$excel->getActiveSheet()->getStyle('B7'.$numrow)->applyFromArray($style_row);
-			$excel->getActiveSheet()->getStyle('B8'.$numrow)->applyFromArray($style_row);
-			$excel->getActiveSheet()->getStyle('B9'.$numrow)->applyFromArray($style_row);
+			//$excel->getActiveSheet()->getStyle('A'.($numrow)->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER); // Set text center untuk kolom A2
+			//$excel->getActiveSheet()->getStyle('A'.($numrow)->applyFromArray($style_row);
+			$excel->getActiveSheet()->getStyle('B'.($numrow))->applyFromArray($style_row);
+			$excel->getActiveSheet()->getStyle('B'.($numrow+1))->applyFromArray($style_row);
+			$excel->getActiveSheet()->getStyle('B'.($numrow-2))->applyFromArray($style_row);
+			$excel->getActiveSheet()->getStyle('B'.($numrow-3))->applyFromArray($style_row);
+			$excel->getActiveSheet()->getStyle('B'.($numrow-4))->applyFromArray($style_row);
+			$excel->getActiveSheet()->getStyle('B'.($numrow-5))->applyFromArray($style_row);
+			$excel->getActiveSheet()->getStyle('B'.($numrow-6))->applyFromArray($style_row);
 			
 			$no++; // Tambah 1 setiap kali looping
-			$numrow++; // Tambah 1 setiap kali looping
+			$numrow= $numrow+7; // Tambah 1 setiap kali looping
 		}
 		// Set width kolom
-		$excel->getActiveSheet()->getColumnDimension('A')->setWidth(35);
-		$excel->getActiveSheet()->getColumnDimension('B')->setWidth(55);
-		$excel->getActiveSheet()->getColumnDimension('C')->setWidth(35);
-		$excel->getActiveSheet()->getColumnDimension('D')->setWidth(25);
-		$excel->getActiveSheet()->getColumnDimension('E')->setWidth(15);
-		$excel->getActiveSheet()->getColumnDimension('F')->setWidth(15);
-		$excel->getActiveSheet()->getColumnDimension('G')->setWidth(150);
+		$excel->getActiveSheet()->getColumnDimension('A')->setWidth(25);
+		$excel->getActiveSheet()->getColumnDimension('B')->setWidth(75);
 		
 		// Set height semua kolom menjadi auto (mengikuti height isi dari kolommnya, jadi otomatis)
 		$excel->getActiveSheet()->getDefaultRowDimension()->setRowHeight(-1);
 		// Set orientasi kertas jadi LANDSCAPE
 		$excel->getActiveSheet()->getPageSetup()->setOrientation(PHPExcel_Worksheet_PageSetup::ORIENTATION_LANDSCAPE);
 		// Set judul file excel nya
-		$excel->getActiveSheet(0)->setTitle("Laporan Data Suart");
+		$excel->getActiveSheet(0)->setTitle("Laporan Data Surat");
 		$excel->setActiveSheetIndex(0);
 		// Proses file excel
 		header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');

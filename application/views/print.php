@@ -5,7 +5,7 @@ td{font-size:10px;line-height: 15px; }
 table {border-collapse: collapse;}
 .border{border: 1px solid black;font-size:10px;}
 .center{ text-align:center;}
-.footer { position: fixed; bottom: 0px; text-align:right;font-size:12px; }
+.footer { position: fixed; bottom: 0px; text-align:right;font-size:20px; }
 .pagenum:before {counter-increment: pages; 
 /* content: counter(page) */
  }
@@ -19,26 +19,26 @@ table {border-collapse: collapse;}
 	  text-align: left;
 	}
 </style>
-<div class="header">
-    <table style="width:100%; border-collapse: collapse;" border="1">
+<div >
+    <table style="width:100%; border-collapse: collapse;" border="0">
         <tr>
-            <td style="width:25%;text-align: center;"><img src="<?=base_url()?>uploads/mfs.jpg" width="140px" height="40px" alt=""></td>
-            <td style="width:50%;text-align: center;"><h4>PURCHASE ORDER</h4></td>
-            <td style="width:25%;text-align: center; font-size:10px;">Nomor Dokumen : </td>
+            <td style="width:20%; text-align: center;"><img src="<?=base_url()?>uploads/logo.png" width="80px" height="100px" alt=""></td>
+            <td style="width:70%;text-align: center;"><h4>DINAS KOMUNIKASI DAN INFORMATIKA</h4></td>
         </tr>
     </table>
 </div>
+<br> </br>
 <div class="footer"><span class="pagenum"></span></div>
 <div class="body">
-  <table style="width: 100%;">
+  <table style="width: 100%; ">
 	<thead>
 		<tbody>
 		<?php $spt_list = $this->db->from('spt')->get();
 	$no =1; foreach ($spt_list->result() as $key){ ?>
 	<tr>
-	 <td style="width: 15%;"><b>No Surat</b></td>
+	 <td style="width: 13%; "><b>No Surat</b></td>
 	 <td style="vertical-align: top;"> : </td>
-	 <td style="vertical-align: top;"><?php echo $key->no_surat ?></td>
+	 <td style="width: 80%;"><?php echo $key->no_surat ?></td>
 	</tr>
 	<tr>
 	 <td style="vertical-align: top;"><b>Perihal</b></td>

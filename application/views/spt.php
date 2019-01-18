@@ -30,6 +30,8 @@
   <div class="print">
     <button class="btn btn-warning" onclick="window.open(' <?php echo base_url() ?>index.php/spt/print').print()"> Print</button>
       <a href="<?php echo base_url('index.php/spt/create') ?>" class="btn btn-primary my-3">Tambah</a>
+      <a href="<?php echo base_url("index.php/spt/generate_to_pdf") ?>"><button type="button" class="btn btn-danger">Save As PDF</button></a>
+      <a href="<?php echo base_url("index.php/spt/generate_to_excel") ?>"><button type="button" class="btn btn-success">Save As Excel</button></a>
       <table class="table table-hover">
         <thead>
           <th>No Surat</th>
@@ -54,11 +56,8 @@
                 <a href="<?php echo base_url("index.php/spt/update/".$value['id']) ?>" class="btn btn-sm btn-success">Edit</a>
                 <a href="<?php echo base_url("index.php/spt/deleteData/".$value['id']) ?>" class="btn btn-sm btn-danger">Hapus</a>
                 <a href="<?php echo base_url("index.php/Petugas/ByID/".$value['id']) ?>" class="btn btn-sm btn-info">Info Petugas</a>
-                <a href="<?php echo base_url("index.php/spt/generate_to_pdf/".$value['id']) ?>"><button type="button" class="btn btn-sm btn-block">Save As PDF</button></a>
-                <a href="<?php echo base_url("index.php/spt/generate_to_excel/".$value['id']) ?>"><button type="button" class="btn btn-sm btn-outline-primary">Save As Excel</button></a>
               </td>
             </tr>
-            
           <?php endforeach ?>
         </tbody>
       </table>
