@@ -58,7 +58,7 @@
          <label for="">Tujuan</label>
         <input type="text" class="form-control" name="tujuan" placeholder="Input field">
          <label for="">Hasil</label>
-        <input type="text" class="form-control" name="hasil" placeholder="Input field">
+        <textarea type="text" class="form-control" name="hasil" placeholder="Input field"></textarea>
       </div>
       <button type="submit" class="btn btn-primary">submit</button>
       <?php echo form_close(); ?>

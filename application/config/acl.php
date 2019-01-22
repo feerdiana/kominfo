@@ -65,11 +65,11 @@ $acl = array(
 		'admin' => true,
 	),
 	'Petugas' => array(
-		'user' => true,
+		'user' => false,
 		'admin' => true,
 	),
 	'Sppd' => array(
-		'user' => false,
+		'user' => true,
 		'admin' => true,
 	),
 	'kwitansi' => array(

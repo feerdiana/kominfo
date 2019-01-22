@@ -94,19 +94,22 @@ class Sppd extends CI_Controller {
 		// Buat header tabel nya pada baris ke 3
 		
 		// Panggil function view yang ada di SiswaModel untuk menampilkan semua data siswanya
-		$resultData = $this->db->get("spt")->result();
+		$resultData = $this->db->get("sppd")->result();
 		$no = 1; // Untuk penomoran tabel, di awal set dengan 1
 		$numrow = 4; // Set baris pertama untuk isi tabel adalah baris ke 4
-		$petugas= $this->db->get('petugas');
 		foreach($resultData as $row){ // 
 			//$excel->setActiveSheetIndex(0)->setCellValue('A3', "No");
-			$excel->setActiveSheetIndex(0)->setCellValue('A'.($numrow), "No Surat");
-			$excel->setActiveSheetIndex(0)->setCellValue('A'.($numrow+1), "Perihal");
-			$excel->setActiveSheetIndex(0)->setCellValue('A'.($numrow+2), "Tanggal");
-			$jml_petugas = $petugas->num_rows();
-			$excel->setActiveSheetIndex(0)->setCellValue('A'.($numrow+$jml_petugas), "Petugas");
-			$excel->setActiveSheetIndex(0)->setCellValue('A'.($numrow+3+$jml_petugas), "Tujuan");
-			$excel->setActiveSheetIndex(0)->setCellValue('A'.($numrow+4+$jml_petugas), "Hasil");
+			$excel->setActiveSheetIndex(0)->setCellValue('A'.($numrow), "Nama Pegawai");
+			$excel->setActiveSheetIndex(0)->setCellValue('A'.($numrow+1), "Pangkat / Gol. Ruang");
+			$excel->setActiveSheetIndex(0)->setCellValue('A'.($numrow+2), "Jabatan");
+			$excel->setActiveSheetIndex(0)->setCellValue('A'.($numrow+3), "Maksud Perj. Dinas");
+			$excel->setActiveSheetIndex(0)->setCellValue('A'.($numrow+4), "Tempat Berangkat");
+			$excel->setActiveSheetIndex(0)->setCellValue('A'.($numrow+5), "Tempat Tujuan");
+			$excel->setActiveSheetIndex(0)->setCellValue('A'.($numrow+6), "Tanggal Berangkat");
+			$excel->setActiveSheetIndex(0)->setCellValue('A'.($numrow+7), "Tanggal Kembali");
+			$excel->setActiveSheetIndex(0)->setCellValue('A'.($numrow+8), "Instansi");
+			$excel->setActiveSheetIndex(0)->setCellValue('A'.($numrow+9), "Kode Rekening");
+
 			// Apply style header yang telah kita buat tadi ke masing-masing kolom header
 			//$excel->getActiveSheet()->getStyle('A3')->applyFromArray($style_col);
 			$excel->getActiveSheet()->getStyle('A'.($numrow))->applyFromArray($style_row);
@@ -116,34 +119,38 @@ class Sppd extends CI_Controller {
 			$excel->getActiveSheet()->getStyle('A'.($numrow+4))->applyFromArray($style_row);
 			$excel->getActiveSheet()->getStyle('A'.($numrow+5))->applyFromArray($style_row);
 			$excel->getActiveSheet()->getStyle('A'.($numrow+6))->applyFromArray($style_row);
-			$excel->getActiveSheet()->getStyle('A'.($numrow+7))->applyFromArray($style_row);			
+			$excel->getActiveSheet()->getStyle('A'.($numrow+7))->applyFromArray($style_row);
+			$excel->getActiveSheet()->getStyle('A'.($numrow+8))->applyFromArray($style_row);
+			$excel->getActiveSheet()->getStyle('A'.($numrow+9))->applyFromArray($style_row);
 
 			//$excel->setActiveSheetIndex(0)->setCellValue('A'.($numrow, $no);
-			$excel->setActiveSheetIndex(0)->setCellValue('B'.($numrow), $row->no_surat);
-			$excel->setActiveSheetIndex(0)->setCellValue('B'.($numrow+1), $row->perihal);
-			$excel->setActiveSheetIndex(0)->setCellValue('B'.($numrow+2), $row->tanggal);
-			$n = $numrow+3; foreach ($petugas->result() as $pt){
-				$excel->setActiveSheetIndex(0)->setCellValue('B'.($n), $pt->nama_petugas);
-				$n++;
-				$numrow = $n;
-			}
-			$excel->setActiveSheetIndex(0)->setCellValue('B'.($numrow), $row->tujuan);
-			$excel->setActiveSheetIndex(0)->setCellValue('B'.($numrow+1), $row->hasil);
-
+			$excel->setActiveSheetIndex(0)->setCellValue('B'.($numrow), $row->nama);
+			$excel->setActiveSheetIndex(0)->setCellValue('B'.($numrow+1), $row->pangkat);
+			$excel->setActiveSheetIndex(0)->setCellValue('B'.($numrow+2), $row->jabatan);
+			$excel->setActiveSheetIndex(0)->setCellValue('B'.($numrow+3), $row->maksud);
+			$excel->setActiveSheetIndex(0)->setCellValue('B'.($numrow+4), $row->tmp_berangkat);
+			$excel->setActiveSheetIndex(0)->setCellValue('B'.($numrow+5), $row->tmp_tujuan);
+			$excel->setActiveSheetIndex(0)->setCellValue('B'.($numrow+6), $row->tgl_berangkat);
+			$excel->setActiveSheetIndex(0)->setCellValue('B'.($numrow+7), $row->tgl_kembali);
+			$excel->setActiveSheetIndex(0)->setCellValue('B'.($numrow+8), $row->instansi);
+			$excel->setActiveSheetIndex(0)->setCellValue('B'.($numrow+9), $row->rekening);
 
 			// Apply style row yang telah kita buat tadi ke masing-masing baris (isi tabel)
 			//$excel->getActiveSheet()->getStyle('A'.($numrow)->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER); // Set text center untuk kolom A2
 			//$excel->getActiveSheet()->getStyle('A'.($numrow)->applyFromArray($style_row);
 			$excel->getActiveSheet()->getStyle('B'.($numrow))->applyFromArray($style_row);
 			$excel->getActiveSheet()->getStyle('B'.($numrow+1))->applyFromArray($style_row);
-			$excel->getActiveSheet()->getStyle('B'.($numrow-2))->applyFromArray($style_row);
-			$excel->getActiveSheet()->getStyle('B'.($numrow-3))->applyFromArray($style_row);
-			$excel->getActiveSheet()->getStyle('B'.($numrow-4))->applyFromArray($style_row);
-			$excel->getActiveSheet()->getStyle('B'.($numrow-5))->applyFromArray($style_row);
-			$excel->getActiveSheet()->getStyle('B'.($numrow-6))->applyFromArray($style_row);
+			$excel->getActiveSheet()->getStyle('B'.($numrow+2))->applyFromArray($style_row);
+			$excel->getActiveSheet()->getStyle('B'.($numrow+3))->applyFromArray($style_row);
+			$excel->getActiveSheet()->getStyle('B'.($numrow+4))->applyFromArray($style_row);
+			$excel->getActiveSheet()->getStyle('B'.($numrow+5))->applyFromArray($style_row);
+			$excel->getActiveSheet()->getStyle('B'.($numrow+6))->applyFromArray($style_row);
+			$excel->getActiveSheet()->getStyle('B'.($numrow+7))->applyFromArray($style_row);
+			$excel->getActiveSheet()->getStyle('B'.($numrow+8))->applyFromArray($style_row);
+			$excel->getActiveSheet()->getStyle('B'.($numrow+9))->applyFromArray($style_row);
 			
 			$no++; // Tambah 1 setiap kali looping
-			$numrow= $numrow+7; // Tambah 1 setiap kali looping
+			$numrow= $numrow+13; // Tambah 1 setiap kali looping
 		}
 		// Set width kolom
 		$excel->getActiveSheet()->getColumnDimension('A')->setWidth(25);

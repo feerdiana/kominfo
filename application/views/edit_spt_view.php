@@ -67,7 +67,7 @@
   </div>
   <div class="form-group">
     <label for="">Hasil</label>
-    <input type="text" class="form-control" name="hasil" id="hasil" value="<?php echo $spt[0]->hasil ?>" placeholder="Input field">
+    <textarea type="text" class="form-control" name="hasil" id="hasil" placeholder="<?php echo $spt[0]->hasil ?>" ></textarea>
   </div>
 	<button type="submit" class="btn btn-primary">Submit</button>
 	<?php echo form_close(); ?>

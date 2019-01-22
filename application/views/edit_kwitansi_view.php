@@ -54,7 +54,7 @@
 	</div>
   <div class="form-group">
     <label for="">Untuk Pembayaran</label>
-    <input type="text" class="form-control" name="untuk" id="untuk" value="<?php echo $kwitansi[0]->untuk ?>" placeholder="Input field">
+    <textarea type="text" class="form-control" name="untuk" id="untuk" placeholder="<?php echo $kwitansi[0]->untuk ?>" ></textarea>
   </div>
   <div class="form-group">
     <label for="">Rp</label>

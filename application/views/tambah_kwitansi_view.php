@@ -43,7 +43,7 @@
             <label for="">Uang Sejumlah</label>
         <input type="text" class="form-control" name="sejumlah" placeholder="Input field">
             <label for="">Untuk Pembayaran</label>
-        <input type="text" class="form-control" name="untuk" placeholder="Input field">
+        <textarea type="text" class="form-control" name="untuk" placeholder="Input field"></textarea>
             <label for="">Rp</label>
         <input type="text" class="form-control" name="rp" placeholder="Input field">
            

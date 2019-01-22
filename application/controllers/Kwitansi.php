@@ -94,19 +94,19 @@ class Kwitansi extends CI_Controller {
 		// Buat header tabel nya pada baris ke 3
 		
 		// Panggil function view yang ada di SiswaModel untuk menampilkan semua data siswanya
-		$resultData = $this->db->get("spt")->result();
+		$resultData = $this->db->get("kwitansi")->result();
 		$no = 1; // Untuk penomoran tabel, di awal set dengan 1
 		$numrow = 4; // Set baris pertama untuk isi tabel adalah baris ke 4
-		$petugas= $this->db->get('petugas');
 		foreach($resultData as $row){ // 
 			//$excel->setActiveSheetIndex(0)->setCellValue('A3', "No");
-			$excel->setActiveSheetIndex(0)->setCellValue('A'.($numrow), "No Surat");
-			$excel->setActiveSheetIndex(0)->setCellValue('A'.($numrow+1), "Perihal");
-			$excel->setActiveSheetIndex(0)->setCellValue('A'.($numrow+2), "Tanggal");
-			$jml_petugas = $petugas->num_rows();
-			$excel->setActiveSheetIndex(0)->setCellValue('A'.($numrow+$jml_petugas), "Petugas");
-			$excel->setActiveSheetIndex(0)->setCellValue('A'.($numrow+3+$jml_petugas), "Tujuan");
-			$excel->setActiveSheetIndex(0)->setCellValue('A'.($numrow+4+$jml_petugas), "Hasil");
+			$excel->setActiveSheetIndex(0)->setCellValue('A'.($numrow), "No BKU");
+			$excel->setActiveSheetIndex(0)->setCellValue('A'.($numrow+1), "Kode Rekening");
+			$excel->setActiveSheetIndex(0)->setCellValue('A'.($numrow+2), "No");
+			$excel->setActiveSheetIndex(0)->setCellValue('A'.($numrow+3), "Telah Terima Dari");
+			$excel->setActiveSheetIndex(0)->setCellValue('A'.($numrow+4), "Uang Sejumlah");
+			$excel->setActiveSheetIndex(0)->setCellValue('A'.($numrow+5), "Untuk Pembayaran");
+			$excel->setActiveSheetIndex(0)->setCellValue('A'.($numrow+6), "Rp");
+
 			// Apply style header yang telah kita buat tadi ke masing-masing kolom header
 			//$excel->getActiveSheet()->getStyle('A3')->applyFromArray($style_col);
 			$excel->getActiveSheet()->getStyle('A'.($numrow))->applyFromArray($style_row);
@@ -116,34 +116,29 @@ class Kwitansi extends CI_Controller {
 			$excel->getActiveSheet()->getStyle('A'.($numrow+4))->applyFromArray($style_row);
 			$excel->getActiveSheet()->getStyle('A'.($numrow+5))->applyFromArray($style_row);
 			$excel->getActiveSheet()->getStyle('A'.($numrow+6))->applyFromArray($style_row);
-			$excel->getActiveSheet()->getStyle('A'.($numrow+7))->applyFromArray($style_row);			
 
 			//$excel->setActiveSheetIndex(0)->setCellValue('A'.($numrow, $no);
-			$excel->setActiveSheetIndex(0)->setCellValue('B'.($numrow), $row->no_surat);
-			$excel->setActiveSheetIndex(0)->setCellValue('B'.($numrow+1), $row->perihal);
-			$excel->setActiveSheetIndex(0)->setCellValue('B'.($numrow+2), $row->tanggal);
-			$n = $numrow+3; foreach ($petugas->result() as $pt){
-				$excel->setActiveSheetIndex(0)->setCellValue('B'.($n), $pt->nama_petugas);
-				$n++;
-				$numrow = $n;
-			}
-			$excel->setActiveSheetIndex(0)->setCellValue('B'.($numrow), $row->tujuan);
-			$excel->setActiveSheetIndex(0)->setCellValue('B'.($numrow+1), $row->hasil);
-
+			$excel->setActiveSheetIndex(0)->setCellValue('B'.($numrow), $row->no_bku);
+			$excel->setActiveSheetIndex(0)->setCellValue('B'.($numrow+1), $row->kode_rek);
+			$excel->setActiveSheetIndex(0)->setCellValue('B'.($numrow+2), $row->no);
+			$excel->setActiveSheetIndex(0)->setCellValue('B'.($numrow+3), $row->dari);
+			$excel->setActiveSheetIndex(0)->setCellValue('B'.($numrow+4), $row->sejumlah);
+			$excel->setActiveSheetIndex(0)->setCellValue('B'.($numrow+5), $row->untuk);
+			$excel->setActiveSheetIndex(0)->setCellValue('B'.($numrow+6), $row->rp);
 
 			// Apply style row yang telah kita buat tadi ke masing-masing baris (isi tabel)
 			//$excel->getActiveSheet()->getStyle('A'.($numrow)->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER); // Set text center untuk kolom A2
 			//$excel->getActiveSheet()->getStyle('A'.($numrow)->applyFromArray($style_row);
 			$excel->getActiveSheet()->getStyle('B'.($numrow))->applyFromArray($style_row);
 			$excel->getActiveSheet()->getStyle('B'.($numrow+1))->applyFromArray($style_row);
-			$excel->getActiveSheet()->getStyle('B'.($numrow-2))->applyFromArray($style_row);
-			$excel->getActiveSheet()->getStyle('B'.($numrow-3))->applyFromArray($style_row);
-			$excel->getActiveSheet()->getStyle('B'.($numrow-4))->applyFromArray($style_row);
-			$excel->getActiveSheet()->getStyle('B'.($numrow-5))->applyFromArray($style_row);
-			$excel->getActiveSheet()->getStyle('B'.($numrow-6))->applyFromArray($style_row);
+			$excel->getActiveSheet()->getStyle('B'.($numrow+2))->applyFromArray($style_row);
+			$excel->getActiveSheet()->getStyle('B'.($numrow+3))->applyFromArray($style_row);
+			$excel->getActiveSheet()->getStyle('B'.($numrow+4))->applyFromArray($style_row);
+			$excel->getActiveSheet()->getStyle('B'.($numrow+5))->applyFromArray($style_row);
+			$excel->getActiveSheet()->getStyle('B'.($numrow+6))->applyFromArray($style_row);
 			
 			$no++; // Tambah 1 setiap kali looping
-			$numrow= $numrow+7; // Tambah 1 setiap kali looping
+			$numrow= $numrow+10; // Tambah 1 setiap kali looping
 		}
 		// Set width kolom
 		$excel->getActiveSheet()->getColumnDimension('A')->setWidth(25);
